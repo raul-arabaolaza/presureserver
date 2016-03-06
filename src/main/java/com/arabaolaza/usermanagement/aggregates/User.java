@@ -23,6 +23,7 @@ public class User extends ReflectiveMutableCommandProcessingAggregate<User, User
 	private String userName, userLastName;
 
 	public void apply(UserCreatedEvent event) {
+		log.debug("Aplied user created event");
 		userId = event.getUserId();
 		userAge = event.getUserAge();
 		userName = event.getUserName();
@@ -30,6 +31,7 @@ public class User extends ReflectiveMutableCommandProcessingAggregate<User, User
 	}
 
 	public void apply(UserUpdatedEvent event) {
+		log.debug("Aplied user updated event");
 		String newName = event.getNewName();
 		userName = newName;
 
