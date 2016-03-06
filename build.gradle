@@ -36,6 +36,7 @@ dependencies {
 	compile "net.chrisrichardson.eventstore.client:eventstore-java-client_2.10:0.12"
 	compile "net.chrisrichardson.eventstore.client:eventstore-http-stomp-client_2.10:0.12"
 	compile 'com.fasterxml.jackson.module:jackson-module-scala_2.10:2.6.3'
+	compile("org.springframework.boot:spring-boot-starter-actuator")
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 }
 
