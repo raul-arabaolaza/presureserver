@@ -14,8 +14,6 @@ import net.chrisrichardson.eventstore.repository.AggregateRepository;
 import net.chrisrichardson.utils.config.MetricRegistryConfiguration;
 
 @Configuration
-@Import({ EventStoreHttpClientConfiguration.class, MetricRegistryConfiguration.class })
-@EnableJavaEventHandlers
 public class EventuateConfig {
 
 	@Bean
