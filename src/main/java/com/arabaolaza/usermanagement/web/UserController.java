@@ -47,7 +47,7 @@ public class UserController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public UserView details(@PathVariable(value = "id") String id) {
 		EntityIdentifier entityId = new EntityIdentifier(id);
-		return service.findDetails(entityId).map((u) -> toView(u.entity())).toBlocking().first();
+		return service.findDetails(entityId).map((u) -> toView(u)).toBlocking().first();
 		
 	}
 	

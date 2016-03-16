@@ -1,7 +1,10 @@
 package com.arabaolaza.usermanagement.aggregates.user.services;
 
+import java.util.List;
 import java.util.Random;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +15,8 @@ import com.arabaolaza.usermanagement.aggregates.user.commands.UserCommand;
 
 import net.chrisrichardson.eventstore.EntityIdentifier;
 import net.chrisrichardson.eventstore.EntityWithIdAndVersion;
+import net.chrisrichardson.eventstore.EntityWithMetadata;
+import net.chrisrichardson.eventstore.Event;
 import net.chrisrichardson.eventstore.EventStore;
 import net.chrisrichardson.eventstore.repository.AggregateRepository;
 import net.chrisrichardson.eventstore.util.ServiceUtil;
@@ -21,6 +26,8 @@ import rx.Observable;
 public class UserService {
 	@Autowired
 	private AggregateRepository<User, UserCommand> userRepository;
+	
+	private Log log = LogFactory.getLog(UserService.class);
 	
 	@Autowired
 	private EventStore store;
@@ -39,8 +46,8 @@ public class UserService {
 		
 	}
 	
-	public Observable<EntityWithIdAndVersion<User>> findDetails(EntityIdentifier identifier){
-		return store.find(User.class, identifier).map((u)-> new EntityWithIdAndVersion<User>(u.entityIdAndVersion(),new User()));
+	public Observable<User> findDetails(EntityIdentifier identifier){
+		return store.find(User.class, identifier).map((u)-> u.entity());
 		
 	}
 
